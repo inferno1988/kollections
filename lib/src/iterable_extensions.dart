@@ -56,6 +56,24 @@ extension IterableExtensions<E> on Iterable<E> {
   List<E> unmodifiable() {
     return List.unmodifiable(this);
   }
+
+  List<E> distinct() {
+    return toSet().toList();
+  }
+
+  List<E> distinctBy<V>(V Function(E key) selector) {
+    final set = <V>{};
+    final list = <E>[];
+
+    for (final e in this) {
+      final key = selector(e);
+      if (set.add(key)) {
+        list.add(e);
+      }
+    }
+
+    return list;
+  }
 }
 
 Iterable<List<T>> windowedIterator<T>(Iterable<T> iterator, int size, int step,
