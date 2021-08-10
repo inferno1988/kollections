@@ -107,7 +107,7 @@ Iterable<List<T>> windowedIterator<T>(Iterable<T> iterator, int size, int step,
     for (final e in iterator) {
       buffer.add(e);
       if (buffer.length == size) {
-        Iterable<T> result;
+        List<T> result;
         if (reuseBuffer) {
           result = buffer;
         } else {
@@ -119,7 +119,7 @@ Iterable<List<T>> windowedIterator<T>(Iterable<T> iterator, int size, int step,
     }
     if (partialWindows) {
       while (buffer.length > step) {
-        Iterable<T> result;
+        List<T> result;
         if (reuseBuffer) {
           result = buffer;
         } else {
