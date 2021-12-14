@@ -4,8 +4,8 @@ extension ObjectExtensions<T> on T {
     return this;
   }
 
-  T? takeIf(bool Function() block) {
-    return block() ? this : null;
+  T? takeIf(bool Function(T it) block) {
+    return block(this) ? this : null;
   }
 }
 
