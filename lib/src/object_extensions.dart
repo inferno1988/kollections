@@ -3,6 +3,10 @@ extension ObjectExtensions<T> on T {
     block(this);
     return this;
   }
+
+  T? takeIf(bool Function() block) {
+    return block() ? this : null;
+  }
 }
 
 extension ObjectExtensionsWithResult<R, T> on T {
