@@ -20,7 +20,7 @@ extension MapExtensions<K, V> on Map<K, V> {
     return destination;
   }
 
-  Map<K, V> filter(bool Function(MapEntry<K, V>) predicate) {
+  Map<K, V> filter(bool Function(MapEntry<K, V> entry) predicate) {
     return filterTo(<K, V>{}, predicate);
   }
 
@@ -40,5 +40,21 @@ extension MapExtensions<K, V> on Map<K, V> {
 
   Map<K, V> unmodifiable() {
     return Map.unmodifiable(this);
+  }
+
+  M intersectWithTo<V2, V3, M extends Map<K, V3>>(M destination,
+      Map<K, V2> other, V3 Function(V first, V2 second) intersector) {
+    final commonKeys = other.filter((entry) => containsKey(entry.key)).keys;
+
+    for (final key in commonKeys) {
+      destination[key] = intersector(this[key]!, other[key]!);
+    }
+
+    return destination;
+  }
+
+  Map<K, V3> intersectWith<V2, V3>(
+      Map<K, V2> other, V3 Function(V first, V2 second) intersector) {
+    return intersectWithTo(<K, V3>{}, other, intersector);
   }
 }
