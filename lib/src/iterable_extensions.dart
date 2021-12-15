@@ -41,6 +41,18 @@ extension IterableExtensions<E> on Iterable<E> {
     return destination;
   }
 
+  M associateByTo<K, M extends Map<K, E>>(
+      M destination, K Function(E key) keySelector) {
+    for (final element in this) {
+      destination[keySelector(element)] = element;
+    }
+    return destination;
+  }
+
+  Map<K, E> associateBy<K>(K Function(E key) keySelector) {
+    return associateByTo(<K, E>{}, keySelector);
+  }
+
   M associateWithTo<V, M extends Map<E, V>>(
       M destination, V Function(E key) valueSelector) {
     for (final element in this) {
