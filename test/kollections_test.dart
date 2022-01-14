@@ -52,16 +52,10 @@ void main() {
       });
     });
 
-    test('Associate with test', () {
-      final source = List.generate(10, (index) => index);
-      print(source.associateWith((key) => key * 5));
-    });
-
     test('Associate by test', () {
-      final source = {1: 'a', 2: 'b', 3: 'c', 4: 'd'};
-      final source1 = {2: 'B', 3: 'C'};
+      final source = [1, 2, 3, 4];
 
-      print(source.intersectWith(source1, (first, second) => '$first$second'));
+      print(source.associateBy2((key) => key * 2, (value) => value * 4));
     });
   });
 }
