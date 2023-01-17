@@ -7,6 +7,14 @@ extension ObjectExtensions<T> on T {
   T? takeIf(bool Function(T it) block) {
     return block(this) ? this : null;
   }
+  
+  R? tryCast<R>() {
+    if (this is R) {
+      return this as R;
+    }
+    
+    return null;
+  }
 }
 
 extension ObjectExtensionsWithResult<R, T> on T {
