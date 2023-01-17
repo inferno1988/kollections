@@ -15,14 +15,12 @@ extension ObjectExtensions<T> on T {
     
     return null;
   }
-}
-
-extension ObjectExtensionsWithResult<R, T> on T {
-  R let(R Function(T it) block) {
+  
+  R let<R>(R Function(T it) block) {
     return block(this);
   }
 
-  R run(R Function() block) {
+  R run<R>(R Function() block) {
     return block();
   }
 }
