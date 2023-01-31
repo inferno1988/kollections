@@ -8,6 +8,10 @@ extension ObjectExtensions<T> on T {
     return block(this) ? this : null;
   }
   
+  T? takeUnless(bool Function(T it) block) {
+    return (!block(this)) ? this : null;
+  }
+  
   R? tryCast<R>() {
     if (this is R) {
       return this as R;
