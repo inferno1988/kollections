@@ -1,4 +1,5 @@
 import 'package:kollections/kollections.dart';
+
 import 'map_extensions.dart';
 
 extension IterableExtensions<E> on Iterable<E> {
@@ -98,6 +99,15 @@ extension IterableExtensions<E> on Iterable<E> {
     }
 
     return list;
+  }
+
+  E? firstOrNull(bool Function(E element) check) {
+    final result = where(check);
+    if (result.isEmpty) {
+      return null;
+    }
+
+    return result.first;
   }
 }
 
