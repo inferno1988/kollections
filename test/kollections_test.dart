@@ -57,5 +57,15 @@ void main() {
 
       print(source.associateBy2((key) => key * 2, (value) => value * 4));
     });
+
+    test('Async map', () async {
+      final map = {1: Future.value('a'), 2: Future.value('b')};
+
+      final result =
+          await map.asyncMap((key, value) async => MapEntry(key, await value));
+
+      expect(result[1], 'a');
+      expect(result[2], 'b');
+    });
   });
 }

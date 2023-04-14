@@ -1,3 +1,5 @@
+import 'dart:async';
+
 extension MapExtensions<K, V> on Map<K, V> {
   V getOrPut(K key, V Function() defaultValue) {
     final value = this[key];
@@ -56,5 +58,15 @@ extension MapExtensions<K, V> on Map<K, V> {
   Map<K, V3> intersectWith<V2, V3>(
       Map<K, V2> other, V3 Function(V first, V2 second) intersector) {
     return intersectWithTo(<K, V3>{}, other, intersector);
+  }
+
+  FutureOr<Map<K, V2>> asyncMap<V2>(
+      FutureOr<MapEntry<K, V2>> Function(K key, V value) transform) async {
+    var result = <K, V2>{};
+    for (var key in keys) {
+      var entry = await transform(key, this[key] as V);
+      result[entry.key] = entry.value;
+    }
+    return result;
   }
 }
