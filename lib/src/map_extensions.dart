@@ -60,7 +60,7 @@ extension MapExtensions<K, V> on Map<K, V> {
     return intersectWithTo(<K, V3>{}, other, intersector);
   }
 
-  FutureOr<Map<K, V2>> asyncMap<V2>(
+  Future<Map<K, V2>> asyncMap<V2>(
       FutureOr<MapEntry<K, V2>> Function(K key, V value) transform) async {
     var result = <K, V2>{};
     for (var key in keys) {
