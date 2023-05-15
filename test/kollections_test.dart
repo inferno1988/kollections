@@ -67,5 +67,19 @@ void main() {
       expect(result[1], 'a');
       expect(result[2], 'b');
     });
+
+    test('Merge', () {
+      final first = {'a': 'Hello', 'b': 'Foo', 'e': 'unique'};
+      final second = {'a': 'World', 'b': 'Bar', 'c': 'untouchable'};
+
+      final result = first.merge(second, (first, second) => first + second);
+
+      expect(result, {
+        'a': 'HelloWorld',
+        'b': 'FooBar',
+        'e': 'unique',
+        'c': 'untouchable'
+      });
+    });
   });
 }

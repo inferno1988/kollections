@@ -69,4 +69,23 @@ extension MapExtensions<K, V> on Map<K, V> {
     }
     return result;
   }
+
+  Map<K, V> merge(Map<K, V> second, V Function(V first, V second) conflictResolver) {
+    final first = this;
+    final result = <K,V>{};
+
+    result.addAll(first);
+
+    for (final entry in second.entries) {
+      final key = entry.key;
+
+      if (result.containsKey(key)) {
+        result[key] = conflictResolver(first[key]!, second[key]!);
+      } else {
+        result[key] = entry.value;
+      }
+    }
+
+    return result;
+  }
 }
