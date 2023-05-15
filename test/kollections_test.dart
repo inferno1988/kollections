@@ -81,5 +81,20 @@ void main() {
         'c': 'untouchable'
       });
     });
+
+    test('Merge with key', () {
+      final first = {'a': 'Hello', 'b': 'Foo', 'e': 'unique'};
+      final second = {'a': 'World', 'b': 'Bar', 'c': 'untouchable'};
+
+      final result = first.mergeWithKey(
+          second, (key, first, second) => key + first + second);
+
+      expect(result, {
+        'a': 'aHelloWorld',
+        'b': 'bFooBar',
+        'e': 'unique',
+        'c': 'untouchable'
+      });
+    });
   });
 }

@@ -70,9 +70,16 @@ extension MapExtensions<K, V> on Map<K, V> {
     return result;
   }
 
-  Map<K, V> merge(Map<K, V> second, V Function(V first, V second) conflictResolver) {
+  Map<K, V> merge(
+      Map<K, V> second, V Function(V first, V second) conflictResolver) {
+    return mergeWithKey(
+        second, (_, first, second) => conflictResolver(first, second));
+  }
+
+  Map<K, V> mergeWithKey(
+      Map<K, V> second, V Function(K key, V first, V second) conflictResolver) {
     final first = this;
-    final result = <K,V>{};
+    final result = <K, V>{};
 
     result.addAll(first);
 
@@ -80,7 +87,7 @@ extension MapExtensions<K, V> on Map<K, V> {
       final key = entry.key;
 
       if (result.containsKey(key)) {
-        result[key] = conflictResolver(first[key]!, second[key]!);
+        result[key] = conflictResolver(key, first[key]!, second[key]!);
       } else {
         result[key] = entry.value;
       }
