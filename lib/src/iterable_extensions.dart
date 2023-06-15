@@ -1,7 +1,5 @@
 import 'package:kollections/kollections.dart';
 
-import 'map_extensions.dart';
-
 extension IterableExtensions<E> on Iterable<E> {
   List<List<E>> windowed(
     int size, {
@@ -109,6 +107,16 @@ extension IterableExtensions<E> on Iterable<E> {
 
     return result.first;
   }
+}
+
+extension BoolIterableExtensions on Iterable<bool> {
+  bool atLeastOne() => any((element) => element);
+
+  bool all() => every((element) => element);
+
+  bool notAll() => any((element) => !element);
+
+  bool none() => every((element) => !element);
 }
 
 Iterable<List<T>> windowedIterator<T>(Iterable<T> iterator, int size, int step,

@@ -96,5 +96,17 @@ void main() {
         'c': 'untouchable'
       });
     });
+
+    test('Bool iterable tests', () {
+      final atLeastOne = [false, true].atLeastOne();
+      final all = [true, true].all();
+      final notAll = [true, false].notAll();
+      final none = [false, false].none();
+
+      expect(atLeastOne, true);
+      expect(all, true);
+      expect(notAll, true);
+      expect(none, true);
+    });
   });
 }
