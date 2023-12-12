@@ -1,22 +1,18 @@
-A library for Dart developers.
+Kollections
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Port of Kotlin extensions for collections, plus some additional extensions and tools.
 
 ## Usage
-
-A simple usage example:
-
 ```dart
 import 'package:kollections/kollections.dart';
+```
 
-main() {
-  var awesome = new Awesome();
-}
+```
+See test/kollections_test.dart for usage examples.
 ```
 
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/inferno1988/kollections/issues
